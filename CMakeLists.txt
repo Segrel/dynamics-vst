@@ -286,3 +286,26 @@ add_plugin(svf
     INCLUDE_DIRS
         ${dsp_source}
         ${svf_source})
+
+# dynamics project
+set(dynamics_source ${CMAKE_CURRENT_SOURCE_DIR}/projects/Dynamics)
+
+add_plugin(dynamics
+    VERSION 0.1.0
+    PLUGIN_NAME "Dynamics"
+    PROD_NAME Dynamics
+    PROD_CODE Dnmc
+    SYNTH FALSE
+    SOURCES
+        ${dynamics_source}/PluginEditor.cpp
+        ${dynamics_source}/PluginProcessor.cpp
+        ${dynamics_source}/Compressor/Compressor.cpp
+        ${dynamics_source}/Compressor/GainSmoother.cpp
+        ${dynamics_source}/Compressor/MakeUpGain.cpp
+        ${dynamics_source}/Compressor/TargetGainComputer.cpp
+        ${dsp_source}/Meter.cpp
+        ${gui_source}/MeterComponent.cpp
+    INCLUDE_DIRS
+        ${dsp_source}
+        ${gui_source}
+        ${dynamics_source})
