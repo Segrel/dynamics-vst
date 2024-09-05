@@ -15,6 +15,7 @@ namespace Param
         static const juce::String Gain { "gain" };
         static const juce::String Attack { "attack" };
         static const juce::String Release { "release" };
+        static const juce::String PeakReduction { "peakreduction" };
     }
 
     namespace Name
@@ -25,6 +26,7 @@ namespace Param
         static const juce::String Gain { "Gain" };
         static const juce::String Attack { "Attack" };
         static const juce::String Release { "Release" };
+        static const juce::String PeakReduction { "Peak Reduction" };
     }
 
     namespace Ranges
@@ -34,10 +36,10 @@ namespace Param
         static constexpr float ThresholdInc { 0.001f };
         static constexpr float ThresholdSkw { 1.0f };
 
-        static constexpr float RatioMin { 1 };
-        static constexpr float RatioMax { 30 };
-        static constexpr float RatioInc { 1 };
-        static constexpr float RatioSkw { 1 };
+        static constexpr float RatioMin { 1.0f };
+        static constexpr float RatioMax { 30.0f };
+        static constexpr float RatioInc { 1.0f };
+        static constexpr float RatioSkw { 1.0f };
 
         static constexpr float GainMin { 1.f };
         static constexpr float GainMax { 2.0f };
@@ -53,6 +55,11 @@ namespace Param
         static constexpr float ReleaseMax { 5000.0f };
         static constexpr float ReleaseInc { 0.01f };
         static constexpr float ReleaseSkw { 1.f };
+
+        static constexpr float PeakReductionMin { 0.f };
+        static constexpr float PeakReductionMax { 1.0f };
+        static constexpr float PeakReductionInc { 0.01f };
+        static constexpr float PeakReductionSkw { 1.f };
 
         static const juce::String EnabledOff { "Off" };
         static const juce::String EnabledOn { "On" };

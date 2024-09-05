@@ -1,5 +1,8 @@
 #pragma once
 
+#include "LA2AComputer.h"
+#include "LA2AComputerParameters.h"
+
 namespace DSP {
 
 class TargetGainComputer {
@@ -12,13 +15,29 @@ public:
     const TargetGainComputer& operator=(const TargetGainComputer&) = delete;
     const TargetGainComputer& operator=(TargetGainComputer&&) = delete;
 
+    void setLA2APeakReduction(float peakReduction);
     void setThreshold(float newThreshold);
-    void setRatio(unsigned int newRatio);
+    void setRatio(float newRatio);
     float compute(float rectifiedLevel);
 
 private:
-    int ratio { 5 };
+    float ratio { 5.0f };
     float threshold { -25.f };
+
+    float manualRatio { 5.0f };
+    float manualThreshold { -25.f };
+
+    float la2aPeakReduction { -1.0f };
+    float la2aRatio { 5.0f };
+    float la2aThreshold { -25.f };
+
+    static const size_t INPUT_SIZE = 1u;
+    static const size_t OUTPUT_SIZE = 3u;
+    static const size_t HIDDEN_SIZE = 20u;
+    static const size_t NUM_LAYERS = 4u;
+
+    LA2AComputer<INPUT_SIZE, OUTPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS> la2aGainComputer;
+    LA2AComputerParameters la2aGainComputerParameters;
 };
 
 }

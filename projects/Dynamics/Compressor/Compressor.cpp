@@ -1,6 +1,7 @@
 #include "Compressor.h"
 
 #include <algorithm>
+#include <cmath>
 
 namespace DSP {
 
@@ -24,7 +25,7 @@ void Compressor::setGain(float newGain)
     gain = newGain;
 }
 
-void Compressor::setRatio(int newRatio)
+void Compressor::setRatio(float newRatio)
 {
     gainComputer.setRatio(newRatio);
 }
@@ -32,6 +33,11 @@ void Compressor::setRatio(int newRatio)
 void Compressor::setThreshold(float newThreshold)
 {
     gainComputer.setThreshold(newThreshold);
+}
+
+void Compressor::setLA2APeakReduction(float newPeakReduction)
+{
+    gainComputer.setLA2APeakReduction(newPeakReduction);
 }
 
 void Compressor::setAttackTime(float newAttackTime)

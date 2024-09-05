@@ -1,5 +1,6 @@
 #include "GainSmoother.h"
 #include <algorithm>
+#include <cmath>
 
 namespace DSP {
 

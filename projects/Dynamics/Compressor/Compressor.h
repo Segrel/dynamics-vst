@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Compressor/GainSmoother.h"
-#include "Compressor/TargetGainComputer.h"
-#include "Compressor/MakeUpGain.h"
+#include "GainSmoother.h"
+#include "TargetGainComputer.h"
+#include "MakeUpGain.h"
 
 namespace DSP
 {
@@ -19,8 +19,9 @@ public:
 
     void prepare(double sampleRate, unsigned int numChannels);
     void setGain(float newGain);
-    void setRatio(int newRatio);
+    void setRatio(float newRatio);
     void setThreshold(float newThreshold);
+    void setLA2APeakReduction(float newPeakReduction);
     void setAttackTime(float newAttackTime);
     void setReleaseTime(float newReleaseTime);
     void process(float* const* output, const float* const* input, unsigned int numChannels, unsigned int numSamples);

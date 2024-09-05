@@ -303,6 +303,7 @@ add_plugin(dynamics
         ${dynamics_source}/Compressor/GainSmoother.cpp
         ${dynamics_source}/Compressor/MakeUpGain.cpp
         ${dynamics_source}/Compressor/TargetGainComputer.cpp
+        ${dynamics_source}/Compressor/LA2AComputerParameters.cpp
         ${dsp_source}/Meter.cpp
         ${gui_source}/MeterComponent.cpp
     INCLUDE_DIRS
