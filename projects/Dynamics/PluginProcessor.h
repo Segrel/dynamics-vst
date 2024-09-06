@@ -2,7 +2,6 @@
 
 #include <JuceHeader.h>
 #include "Meter.h"
-#include "Ramp.h"
 #include "Compressor/Compressor.h"
 
 namespace Param
