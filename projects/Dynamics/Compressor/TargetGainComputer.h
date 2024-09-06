@@ -18,18 +18,22 @@ public:
     void setLA2APeakReduction(float peakReduction);
     void setThreshold(float newThreshold);
     void setRatio(float newRatio);
+    void setKneeWidth(float newWidth);
     float compute(float rectifiedLevel);
 
 private:
     float ratio { 5.0f };
     float threshold { -25.f };
+    float width { 10.0f };
 
     float manualRatio { 5.0f };
     float manualThreshold { -25.f };
+    float manualWidth { 10.0f };
 
     float la2aPeakReduction { -1.0f };
     float la2aRatio { 5.0f };
     float la2aThreshold { -25.f };
+    float la2aWidth { 10.0f };
 
     static const size_t INPUT_SIZE = 1u;
     static const size_t OUTPUT_SIZE = 3u;

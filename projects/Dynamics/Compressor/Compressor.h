@@ -21,6 +21,7 @@ public:
     void setGain(float newGain);
     void setRatio(float newRatio);
     void setThreshold(float newThreshold);
+    void setKneeWidth(float newWidth);
     void setLA2APeakReduction(float newPeakReduction);
     void setAttackTime(float newAttackTime);
     void setReleaseTime(float newReleaseTime);

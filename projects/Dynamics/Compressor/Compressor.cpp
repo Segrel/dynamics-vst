@@ -35,6 +35,11 @@ void Compressor::setThreshold(float newThreshold)
     gainComputer.setThreshold(newThreshold);
 }
 
+void Compressor::setKneeWidth(float newWidth)
+{
+    gainComputer.setKneeWidth(newWidth);
+}
+
 void Compressor::setLA2APeakReduction(float newPeakReduction)
 {
     gainComputer.setLA2APeakReduction(newPeakReduction);

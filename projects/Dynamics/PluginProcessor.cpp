@@ -6,12 +6,13 @@
 
 static const std::vector<mrta::ParameterInfo> Parameters
 {
-    { Param::ID::Threshold,  Param::Name::Threshold, Param::Units::dB,  -25.f,  Param::Ranges::ThresholdMin,  Param::Ranges::ThresholdMax,  Param::Ranges::ThresholdInc,  Param::Ranges::ThresholdSkw },
-    { Param::ID::Ratio,      Param::Name::Ratio,     "",                5.0f,      Param::Ranges::RatioMin,      Param::Ranges::RatioMax,      Param::Ranges::RatioInc,      Param::Ranges::RatioSkw },
-    { Param::ID::Gain,       Param::Name::Gain,      "",                1.0f,   Param::Ranges::GainMin,       Param::Ranges::GainMax,       Param::Ranges::GainInc,       Param::Ranges::GainSkw },
-    { Param::ID::Attack,     Param::Name::Attack,    Param::Units::Ms,  100.0f, Param::Ranges::AttackMin,     Param::Ranges::AttackMax,     Param::Ranges::AttackInc,     Param::Ranges::AttackSkw },
-    { Param::ID::Release,    Param::Name::Release,   Param::Units::Ms,  100.0f, Param::Ranges::ReleaseMin,    Param::Ranges::ReleaseMax,    Param::Ranges::ReleaseInc,    Param::Ranges::ReleaseSkw },
-    { Param::ID::PeakReduction,    Param::Name::PeakReduction,   "",  0.0f, Param::Ranges::PeakReductionMin,    Param::Ranges::PeakReductionMax,    Param::Ranges::PeakReductionInc,    Param::Ranges::PeakReductionSkw },
+    { Param::ID::Threshold,     Param::Name::Threshold,     Param::Units::dB,  -25.f,  Param::Ranges::ThresholdMin,     Param::Ranges::ThresholdMax,     Param::Ranges::ThresholdInc,     Param::Ranges::ThresholdSkw },
+    { Param::ID::Ratio,         Param::Name::Ratio,         "",                5.0f,   Param::Ranges::RatioMin,         Param::Ranges::RatioMax,         Param::Ranges::RatioInc,         Param::Ranges::RatioSkw },
+    { Param::ID::KneeWidth,     Param::Name::KneeWidth,     "",                10.0f,  Param::Ranges::KneeWidthMin,     Param::Ranges::KneeWidthMax,     Param::Ranges::KneeWidthInc,     Param::Ranges::KneeWidthSkw },
+    { Param::ID::Gain,          Param::Name::Gain,          "",                1.0f,   Param::Ranges::GainMin,          Param::Ranges::GainMax,          Param::Ranges::GainInc,          Param::Ranges::GainSkw },
+    { Param::ID::Attack,        Param::Name::Attack,        Param::Units::Ms,  100.0f, Param::Ranges::AttackMin,        Param::Ranges::AttackMax,        Param::Ranges::AttackInc,        Param::Ranges::AttackSkw },
+    { Param::ID::Release,       Param::Name::Release,       Param::Units::Ms,  100.0f, Param::Ranges::ReleaseMin,       Param::Ranges::ReleaseMax,       Param::Ranges::ReleaseInc,       Param::Ranges::ReleaseSkw },
+    { Param::ID::PeakReduction, Param::Name::PeakReduction, "",                0.0f,   Param::Ranges::PeakReductionMin, Param::Ranges::PeakReductionMax, Param::Ranges::PeakReductionInc, Param::Ranges::PeakReductionSkw },
 };
 
 DynamicsAudioProcessor::DynamicsAudioProcessor() :
@@ -27,6 +28,12 @@ DynamicsAudioProcessor::DynamicsAudioProcessor() :
     [this] (int value, bool /*force*/)
     {
         compressor.setRatio(value);
+    });
+
+    parameterManager.registerParameterCallback(Param::ID::KneeWidth,
+    [this] (int value, bool /*force*/)
+    {
+        compressor.setKneeWidth(value);
     });
 
     parameterManager.registerParameterCallback(Param::ID::Gain,

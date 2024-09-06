@@ -12,6 +12,7 @@ namespace Param
         static const juce::String Enabled { "enabled" };
         static const juce::String Threshold { "threshold" };
         static const juce::String Ratio { "ratio" };
+        static const juce::String KneeWidth { "kneewidth" };
         static const juce::String Gain { "gain" };
         static const juce::String Attack { "attack" };
         static const juce::String Release { "release" };
@@ -23,6 +24,7 @@ namespace Param
         static const juce::String Enabled { "Enabled" };
         static const juce::String Threshold { "Threshold" };
         static const juce::String Ratio { "Ratio" };
+        static const juce::String KneeWidth { "Knee Width" };
         static const juce::String Gain { "Gain" };
         static const juce::String Attack { "Attack" };
         static const juce::String Release { "Release" };
@@ -41,6 +43,11 @@ namespace Param
         static constexpr float RatioInc { 1.0f };
         static constexpr float RatioSkw { 1.0f };
 
+        static constexpr float KneeWidthMin { 0.0f };
+        static constexpr float KneeWidthMax { 30.0f };
+        static constexpr float KneeWidthInc { 0.1f };
+        static constexpr float KneeWidthSkw { 1.0f };
+
         static constexpr float GainMin { 1.f };
         static constexpr float GainMax { 2.0f };
         static constexpr float GainInc { 0.01f };
@@ -52,7 +59,7 @@ namespace Param
         static constexpr float AttackSkw { 1.f };
 
         static constexpr float ReleaseMin { 50.f };
-        static constexpr float ReleaseMax { 5000.0f };
+        static constexpr float ReleaseMax { 500.0f };
         static constexpr float ReleaseInc { 0.01f };
         static constexpr float ReleaseSkw { 1.f };
 
@@ -60,9 +67,6 @@ namespace Param
         static constexpr float PeakReductionMax { 1.0f };
         static constexpr float PeakReductionInc { 0.01f };
         static constexpr float PeakReductionSkw { 1.f };
-
-        static const juce::String EnabledOff { "Off" };
-        static const juce::String EnabledOn { "On" };
     }
 
     namespace Units
