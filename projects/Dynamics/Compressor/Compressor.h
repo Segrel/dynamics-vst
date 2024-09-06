@@ -17,12 +17,13 @@ public:
     const Compressor& operator=(const Compressor&) = delete;
     const Compressor& operator=(Compressor&&) = delete;
 
-    void prepare(double sampleRate, unsigned int numChannels);
+    void prepare(double sampleRate, unsigned int numChannels, unsigned int samplesPerBlock);
     void setGain(float newGain);
     void setRatio(float newRatio);
     void setThreshold(float newThreshold);
     void setKneeWidth(float newWidth);
     void setLA2APeakReduction(float newPeakReduction);
+    void setLA2AWarmth(float newWarmth);
     void setAttackTime(float newAttackTime);
     void setReleaseTime(float newReleaseTime);
     void process(float* const* output, const float* const* input, unsigned int numChannels, unsigned int numSamples);

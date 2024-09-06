@@ -5,7 +5,9 @@
 
 namespace DSP {
 
-Compressor::Compressor()
+Compressor::Compressor() :
+    gainComputer(),
+    makeUpGain()
 {
 }
 
@@ -13,11 +15,12 @@ Compressor::~Compressor()
 {
 }
 
-void Compressor::prepare(double newSampleRate, unsigned int numChannels)
+void Compressor::prepare(double newSampleRate, unsigned int numChannels, unsigned int samplesPerBlock)
 {
     sampleRate = newSampleRate;
 
     gainSmoother.prepare(newSampleRate);
+    makeUpGain.prepare(numChannels, samplesPerBlock);
 }
 
 void Compressor::setGain(float newGain)
@@ -43,6 +46,11 @@ void Compressor::setKneeWidth(float newWidth)
 void Compressor::setLA2APeakReduction(float newPeakReduction)
 {
     gainComputer.setLA2APeakReduction(newPeakReduction);
+}
+
+void Compressor::setLA2AWarmth(float newWarmth)
+{
+    makeUpGain.setLA2AWarmth(newWarmth);
 }
 
 void Compressor::setAttackTime(float newAttackTime)

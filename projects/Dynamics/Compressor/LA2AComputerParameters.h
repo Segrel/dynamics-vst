@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LA2AParameters.h"
+#include "LA2AComputerModel.h"
 
 struct LA2AComputerParameters
 {
@@ -11,5 +11,5 @@ struct LA2AComputerParameters
     static const size_t HIDDEN_SIZE = 20 ;
     static const size_t NUM_LAYERS = 4 ;
 
-    LA2AParameters<INPUT_SIZE, OUTPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS> params;
+    LA2AComputerModel<INPUT_SIZE, OUTPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS> params;
 };

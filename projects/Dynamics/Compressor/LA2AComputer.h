@@ -4,7 +4,7 @@
 #include <cmath>
 #include <cstring>
 
-#include "LA2AParameters.h"
+#include "LA2AComputerModel.h"
 
 template <size_t INPUT_SIZE, size_t OUTPUT_SIZE, size_t HIDDEN_SIZE, size_t NUM_LAYERS>
 class LA2AComputer
@@ -85,7 +85,7 @@ public:
         }
     }
 
-    void load_parameters(LA2AParameters<INPUT_SIZE, OUTPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS> params)
+    void load_parameters(LA2AComputerModel<INPUT_SIZE, OUTPUT_SIZE, HIDDEN_SIZE, NUM_LAYERS> params)
     {
         memcpy(weight_in, params.weight_in, sizeof(weight_in));
         memcpy(bias_in, params.bias_in, sizeof(bias_in));

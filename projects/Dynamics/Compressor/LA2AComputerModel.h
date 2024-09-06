@@ -2,7 +2,7 @@
 #include <cstddef>
 
 template <size_t INPUT_SIZE, size_t OUTPUT_SIZE, size_t HIDDEN_SIZE, size_t NUM_LAYERS>
-struct LA2AParameters
+struct LA2AComputerModel
 {
     static_assert(NUM_LAYERS > 2, "Number of layers must be greater than 2");
 

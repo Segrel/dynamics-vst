@@ -17,6 +17,7 @@ namespace Param
         static const juce::String Attack { "attack" };
         static const juce::String Release { "release" };
         static const juce::String PeakReduction { "peakreduction" };
+        static const juce::String Warmth { "warmth" };
     }
 
     namespace Name
@@ -29,6 +30,7 @@ namespace Param
         static const juce::String Attack { "Attack" };
         static const juce::String Release { "Release" };
         static const juce::String PeakReduction { "Peak Reduction" };
+        static const juce::String Warmth { "Warmth" };
     }
 
     namespace Ranges
@@ -67,6 +69,11 @@ namespace Param
         static constexpr float PeakReductionMax { 1.0f };
         static constexpr float PeakReductionInc { 0.01f };
         static constexpr float PeakReductionSkw { 1.f };
+
+        static constexpr float WarmthMin { 0.f };
+        static constexpr float WarmthMax { 1.0f };
+        static constexpr float WarmthInc { 0.01f };
+        static constexpr float WarmthSkw { 1.f };
     }
 
     namespace Units

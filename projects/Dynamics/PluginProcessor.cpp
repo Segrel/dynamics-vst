@@ -13,10 +13,12 @@ static const std::vector<mrta::ParameterInfo> Parameters
     { Param::ID::Attack,        Param::Name::Attack,        Param::Units::Ms,  100.0f, Param::Ranges::AttackMin,        Param::Ranges::AttackMax,        Param::Ranges::AttackInc,        Param::Ranges::AttackSkw },
     { Param::ID::Release,       Param::Name::Release,       Param::Units::Ms,  100.0f, Param::Ranges::ReleaseMin,       Param::Ranges::ReleaseMax,       Param::Ranges::ReleaseInc,       Param::Ranges::ReleaseSkw },
     { Param::ID::PeakReduction, Param::Name::PeakReduction, "",                0.0f,   Param::Ranges::PeakReductionMin, Param::Ranges::PeakReductionMax, Param::Ranges::PeakReductionInc, Param::Ranges::PeakReductionSkw },
+    { Param::ID::Warmth,        Param::Name::Warmth,        "",                0.0f,   Param::Ranges::WarmthMin,        Param::Ranges::WarmthMax,        Param::Ranges::WarmthInc,        Param::Ranges::WarmthSkw },
 };
 
 DynamicsAudioProcessor::DynamicsAudioProcessor() :
-    parameterManager(*this, ProjectInfo::projectName, Parameters)
+    parameterManager(*this, ProjectInfo::projectName, Parameters),
+    compressor()
 {
     parameterManager.registerParameterCallback(Param::ID::Threshold,
     [this] (float value, bool /*force*/)
@@ -59,6 +61,12 @@ DynamicsAudioProcessor::DynamicsAudioProcessor() :
     {
         compressor.setLA2APeakReduction(value);
     });
+
+    parameterManager.registerParameterCallback(Param::ID::Warmth,
+    [this] (float value, bool /*force*/)
+    {
+        compressor.setLA2AWarmth(value);
+    });
 }
 
 DynamicsAudioProcessor::~DynamicsAudioProcessor()
@@ -69,7 +77,7 @@ void DynamicsAudioProcessor::prepareToPlay(double newSampleRate, int samplesPerB
 {
     const unsigned int numChannels { static_cast<unsigned int>(std::max(getMainBusNumInputChannels(), getMainBusNumOutputChannels())) };
 
-    compressor.prepare(newSampleRate, numChannels);
+    compressor.prepare(newSampleRate, numChannels, samplesPerBlock);
     inputMeter.prepare(newSampleRate, numChannels);
     outputMeter.prepare(newSampleRate, numChannels);
 

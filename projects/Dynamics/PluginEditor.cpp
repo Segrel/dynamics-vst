@@ -7,7 +7,7 @@ DynamicsAudioProcessorEditor::DynamicsAudioProcessorEditor(DynamicsAudioProcesso
     paramEditor1(audioProcessor.getParameterManager(), PARAM_HEIGHT, { Param::ID::Threshold, Param::ID::Attack }),
     paramEditor2(audioProcessor.getParameterManager(), PARAM_HEIGHT, { Param::ID::Ratio, Param::ID::Release }),
     paramEditor3(audioProcessor.getParameterManager(), PARAM_HEIGHT, { Param::ID::KneeWidth, Param::ID::Gain }),
-    paramEditor4(audioProcessor.getParameterManager(), PARAM_HEIGHT, { Param::ID::PeakReduction }),
+    paramEditor4(audioProcessor.getParameterManager(), PARAM_HEIGHT, { Param::ID::PeakReduction, Param::ID::Warmth }),
     inputMeterComponent(audioProcessor.getInputMeter()),
     outputMeterComponent(audioProcessor.getOutputMeter())
 {
