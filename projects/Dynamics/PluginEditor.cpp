@@ -21,6 +21,7 @@ DynamicsAudioProcessorEditor::DynamicsAudioProcessorEditor(DynamicsAudioProcesso
     addAndMakeVisible(outputMeterComponent);
     addAndMakeVisible(headerComponent);
     setSize(4 * PARAM_WIDTH + 2 * METER_WIDTH, 2 * PARAM_HEIGHT + HEADER_HEIGHT);
+    startTimerHz(10);
 }
 
 DynamicsAudioProcessorEditor::~DynamicsAudioProcessorEditor()
@@ -50,4 +51,15 @@ void DynamicsAudioProcessorEditor::resized()
     paramEditor2.setBounds(area.removeFromLeft(PARAM_WIDTH));
     paramEditor3.setBounds(area.removeFromLeft(PARAM_WIDTH));
     paramEditor4.setBounds(area);
+}
+
+void DynamicsAudioProcessorEditor::timerCallback()
+{
+    float threshold = compressor.getThreshold();
+    paramEditor1.parameterComponents[0]->setValue(threshold, ::dontSendNotification);
+    float ratio = compressor.getRatio();
+    paramEditor2.parameterComponents[0]->setValue(ratio, ::dontSendNotification);
+    float width = compressor.getKneeWidth();
+    paramEditor3.parameterComponents[0]->setValue(width, ::dontSendNotification);
+    repaint();
 }

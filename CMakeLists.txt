@@ -144,6 +144,7 @@ add_plugin(dynamics
         ${dsp_source}/Meter.cpp
         ${gui_source}/MeterComponent.cpp
         ${gui_source}/HeaderComponent.cpp
+        ${gui_source}/SliderEditor.cpp
     INCLUDE_DIRS
         ${dsp_source}
         ${gui_source}

@@ -99,6 +99,7 @@ public:
     mrta::ParameterManager& getParameterManager() { return parameterManager; }
     DSP::Meter& getInputMeter() { return inputMeter; }
     DSP::Meter& getOutputMeter() { return outputMeter; }
+    DSP::Compressor& getCompressor() { return compressor; }
 
     //==============================================================================
     juce::AudioProcessorEditor* createEditor() override;

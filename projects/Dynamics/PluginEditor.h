@@ -4,8 +4,11 @@
 #include "PluginProcessor.h"
 #include "MeterComponent.h"
 #include "HeaderComponent.h"
+#include "SliderEditor.h"
+#include "Compressor/Compressor.h"
 
-class DynamicsAudioProcessorEditor  : public juce::AudioProcessorEditor
+class DynamicsAudioProcessorEditor  : public juce::AudioProcessorEditor,
+                                      public juce::Timer
 {
 public:
     DynamicsAudioProcessorEditor(DynamicsAudioProcessor&);
@@ -18,16 +21,18 @@ public:
 
     void paint(juce::Graphics&) override;
     void resized() override;
+    void timerCallback() override;
 
 private:
     DynamicsAudioProcessor& audioProcessor;
-    mrta::GenericParameterEditor paramEditor1;
-    mrta::GenericParameterEditor paramEditor2;
-    mrta::GenericParameterEditor paramEditor3;
-    mrta::GenericParameterEditor paramEditor4;
+    GUI::SliderEditor paramEditor1;
+    GUI::SliderEditor paramEditor2;
+    GUI::SliderEditor paramEditor3;
+    GUI::SliderEditor paramEditor4;
     GUI::MeterComponent inputMeterComponent;
     GUI::MeterComponent outputMeterComponent;
     GUI::HeaderComponent headerComponent;
+    DSP::Compressor& compressor { audioProcessor.getCompressor() };
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DynamicsAudioProcessorEditor)
 };

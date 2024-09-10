@@ -17,8 +17,11 @@ public:
 
     void setLA2APeakReduction(float peakReduction);
     void setThreshold(float newThreshold);
+    float getThreshold() { return threshold; };
     void setRatio(float newRatio);
+    float getRatio() { return ratio; };
     void setKneeWidth(float newWidth);
+    float getKneeWidth() { return width; };
     float compute(float rectifiedLevel);
 
 private:

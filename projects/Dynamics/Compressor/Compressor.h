@@ -20,8 +20,11 @@ public:
     void prepare(double sampleRate, unsigned int numChannels, unsigned int samplesPerBlock);
     void setGain(float newGain);
     void setRatio(float newRatio);
+    float getRatio() { return gainComputer.getRatio(); };
     void setThreshold(float newThreshold);
+    float getThreshold() { return gainComputer.getThreshold(); };
     void setKneeWidth(float newWidth);
+    float getKneeWidth() { return gainComputer.getKneeWidth(); };
     void setLA2APeakReduction(float newPeakReduction);
     void setLA2AWarmth(float newWarmth);
     void setAttackTime(float newAttackTime);
