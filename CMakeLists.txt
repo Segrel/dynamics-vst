@@ -143,6 +143,7 @@ add_plugin(dynamics
         ${dynamics_source}/Compressor/LA2AMakeUpParameters.cpp
         ${dsp_source}/Meter.cpp
         ${gui_source}/MeterComponent.cpp
+        ${gui_source}/HeaderComponent.cpp
     INCLUDE_DIRS
         ${dsp_source}
         ${gui_source}

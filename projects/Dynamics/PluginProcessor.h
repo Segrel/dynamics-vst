@@ -49,7 +49,7 @@ namespace Param
         static constexpr float KneeWidthInc { 0.1f };
         static constexpr float KneeWidthSkw { 1.0f };
 
-        static constexpr float GainMin { 1.f };
+        static constexpr float GainMin { 0.0f };
         static constexpr float GainMax { 2.0f };
         static constexpr float GainInc { 0.01f };
         static constexpr float GainSkw { 1.f };
@@ -70,7 +70,7 @@ namespace Param
         static constexpr float PeakReductionSkw { 1.f };
 
         static constexpr float WarmthMin { 0.f };
-        static constexpr float WarmthMax { 1.0f };
+        static constexpr float WarmthMax { 10.0f };
         static constexpr float WarmthInc { 0.01f };
         static constexpr float WarmthSkw { 1.f };
     }

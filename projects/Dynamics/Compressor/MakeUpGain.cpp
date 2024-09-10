@@ -20,6 +20,9 @@ void MakeUpGain::prepare(unsigned int numChannels, unsigned int samplesPerBlock)
     warmthInBuffer.clear();
     warmthOutBuffer.setSize(samplesPerBlock, OUTPUT_SIZE);
     warmthOutBuffer.clear();
+    for (int i = 0; i < numChannels; ++i) {
+        blockerInputBuffer[i] = 0.0f;
+    }
 }
 
 void MakeUpGain::setLA2AWarmth(float newWarmth)
@@ -43,7 +46,12 @@ void MakeUpGain::process(float *const *output, const float *const *input, float 
         la2aMakeUp[ch].process(nn_output_write_ptr, nn_input_read_ptr, numSamples);
         for (unsigned int n = 0; n < numSamples; ++n)
         {
-            output[ch][n] = gain * input[ch][n] + warmth * nn_output_read_ptr[n][0];
+            // DC blocking
+            float blockedOutput = nn_output_read_ptr[n][0] - blockerInputBuffer[ch] + 0.995 * blockerOutputBuffer[ch];
+            blockerInputBuffer[ch] = nn_output_read_ptr[n][0];
+            blockerOutputBuffer[ch] = blockedOutput;
+            // Mix the final output as per gain and warmth
+            output[ch][n] = gain * (gain - 0.06 * warmth) * (input[ch][n] + warmth * blockedOutput);
         }
     }
 }

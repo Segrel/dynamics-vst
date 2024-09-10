@@ -24,6 +24,9 @@ public:
 private:
     float warmth { 0.0f };
 
+    float blockerInputBuffer[2] { 0.0f, 0.0f };
+    float blockerOutputBuffer[2] { 0.0f, 0.0f };
+
     static const unsigned int INPUT_SIZE = 1u;
     static const unsigned int OUTPUT_SIZE = 1u;
     static const unsigned int HIDDEN_SIZE = 8u;

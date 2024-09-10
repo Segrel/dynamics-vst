@@ -48,7 +48,8 @@ GenericParameterEditor::GenericParameterEditor(mrta::ParameterManager& parameter
     {
         std::unique_ptr<juce::Label> ptr { std::make_unique<juce::Label>() };
         ptr->setText(p.name, juce::dontSendNotification);
-        ptr->setFont(juce::FontOptions(12.f));
+        ptr->setFont(juce::FontOptions(16.f));
+        ptr->setJustificationType(juce::Justification::centred);
         return ptr;
     });
 
@@ -58,12 +59,12 @@ GenericParameterEditor::GenericParameterEditor(mrta::ParameterManager& parameter
 
 void GenericParameterEditor::paint(juce::Graphics& g)
 {
-    g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
 }
+
 void GenericParameterEditor::resized()
 {
-    static juce::Rectangle<float> labelProportion { 0.025f, 0.175f, 0.25f, 0.65f };
-    static juce::Rectangle<float> widgetProportion { 0.3f, 0.175f, 0.675f, 0.65f };
+    static juce::Rectangle<float> widgetProportion { 0.05f, 0.1f, 0.8f, 0.55f };
+    static juce::Rectangle<float> labelProportion { 0.1f, 0.6f, 0.8f, 0.2f };
 
     auto localBounds { getLocalBounds() };
     int numOfParams { static_cast<int>(parameterComponents.size()) };
