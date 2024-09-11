@@ -24,21 +24,22 @@ void MeterComponent::paint(juce::Graphics& g)
     float leftEnvelope = meter.getEnvelope(0);
     float leftEnvelopeDb = 20.f * std::log10(std::fmax(leftEnvelope, 1e-6));
 
-    float rightEnvelope = meter.getEnvelope(0);
+    float rightEnvelope = meter.getEnvelope(1);
     float rightEnvelopeDb = 20.f * std::log10(std::fmax(rightEnvelope, 1e-6));
 
+    g.fillAll(juce::Colours::black);
     juce::Rectangle<int> totalArea = getLocalBounds();
     juce::Rectangle<int> leftChannelArea;
     juce::Rectangle<int> rightChannelArea;
     if (numChannels > 1)
     {
-        leftChannelArea = totalArea.removeFromLeft(getWidth() / 2);
-        rightChannelArea = totalArea;
+        leftChannelArea = totalArea.removeFromLeft(getWidth() / 2 - 1.0f);
+        rightChannelArea = totalArea.removeFromRight(getWidth() / 2 - 1.0f);
 
         float leftFillPropHeight = (leftEnvelopeDb - MIN_DB_SCALE) / (MAX_DB_SCALE - MIN_DB_SCALE);
         float rightFillPropHeight = (rightEnvelopeDb - MIN_DB_SCALE) / (MAX_DB_SCALE - MIN_DB_SCALE);
 
-        juce::Rectangle<float> leftProp(0.f, 1.f - leftFillPropHeight,
+        juce::Rectangle<float> leftProp(0.1f, 1.f - leftFillPropHeight,
                                         1.f, leftFillPropHeight);
         juce::Rectangle<float> rightProp(0.f, 1.f - rightFillPropHeight,
                                          1.f, rightFillPropHeight);

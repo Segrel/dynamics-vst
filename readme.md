@@ -27,7 +27,7 @@ Otherwise, the `https` will also work.
 git clone --recurse-submodules https://github.com/joaorossi/modern-real-time-audio.git
 ```
 
-## Build the example project
+## Build the project
 ```
 ./configure.sh
 ./build.sh dynamics

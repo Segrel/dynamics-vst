@@ -14,7 +14,7 @@ Meter::~Meter()
 
 void Meter::prepare(double sampleRate, unsigned int newNumChannels)
 {
-    numChannels = std::max(std::min(newNumChannels, MaxNumChannels - 1), 0u);
+    numChannels = std::max(std::min(newNumChannels, MaxNumChannels), 0u);
     envelopeCoeff = std::exp(-1.f / (static_cast<float>(sampleRate * 0.001) * releaseTimeMs));
     envelopeState.store({ 0.f, 0.f });
 }
@@ -60,7 +60,7 @@ void Meter::setTimeConstant(float newReleaseTimeMs)
 float Meter::getEnvelope(unsigned int channel) const
 {
     const auto currentEnvelope = envelopeState.load();
-    return currentEnvelope[std::min(std::max(channel, 0u), MaxNumChannels - 1)];
+    return currentEnvelope[std::min(std::max(channel, 0u), numChannels)];
 }
 
 unsigned int Meter::getNumChannels() const
