@@ -18,33 +18,27 @@ void TargetGainComputer::setLA2APeakReduction(float peakReduction)
 {
     // normalize to peak reduction to range used in training
     la2aPeakReduction = 2.0f * peakReduction - 1.0f;
-    // infer the threshold and ratio values and denormalize
+    // infer the threshold, ratio and width values and denormalize
     float outputs[3];
     la2aGainComputer.compute(outputs, &peakReduction);
-    la2aThreshold = -80.0f * outputs[0];
-    la2aRatio = 30.0f * outputs[1] + 1.0f;
-    la2aWidth = 30.0f * outputs[2];
-    ratio = la2aRatio;
-    threshold = la2aThreshold;
-    width = la2aWidth;
+    threshold = -80.0f * outputs[0];
+    ratio = 30.0f * outputs[1] + 1.0f;
+    width = 30.0f * outputs[2];
 }
 
 void TargetGainComputer::setThreshold(float newThreshold)
 {
-    manualThreshold = newThreshold;
     threshold = newThreshold;
 }
 
 void TargetGainComputer::setRatio(float newRatio)
 {
-    manualRatio = newRatio;
     ratio = newRatio;
 }
 
 void TargetGainComputer::setKneeWidth(float newWidth)
 {
-    manualWidth = newWidth;
-    width = manualWidth;
+    width = newWidth;
 }
 
 float TargetGainComputer::compute(float rectifiedLevel)
